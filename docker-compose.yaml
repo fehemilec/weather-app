@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: weather_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      API_KEY: 914b77b8531f5b033f36fe96b26d86fa
+
+  redis:
+    image: redis:7
+    container_name: weather_redis
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+
+  frontend:
+    build: ./frontend
+    container_name: weather_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+
+volumes:
+  redis-data:
+    driver: local
