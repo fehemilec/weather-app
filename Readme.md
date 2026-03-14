@@ -6,28 +6,30 @@ This Weather App provides real-time weather information for any city. Users can 
 ## System Architecture
 
       +----------------+
-      |     Frontend   |  React JS
+      |    Frontend    |  React JS
       +--------+-------+
                |
                v
       +----------------+
-      |   FastAPI API  |  Backend endpoint: /weather?city=<city>
+      |   FastAPI API  |  /weather?city=<city>
       +--------+-------+
                |
         Check Redis Cache
                |
-       +-------+--------+
-       |                |
-   Cache Hit         Cache Miss
-       |                |
-Return cached data   Call External Weather API
-       |                |
-       v                v
-     Redis           Cache result in Redis
-       |                |
-       +----------------+
+       +-------+-------+
+       |               |
+   Cache Hit       Cache Miss
+       |               |
+       v               v
+ Return cached     Call External
+     data           Weather API
+       |               |
+       +-------+-------+
                |
-             Response
+           Store in Redis
+               |
+               v
+            Response
 
 ## Components
 ### Frontend (React)
