@@ -7,7 +7,6 @@ This Weather App provides real-time weather information for any city. Users can 
 
       +----------------+
       |     Frontend   |  React JS
-      | (Browser / UI) |
       +--------+-------+
                |
                v
