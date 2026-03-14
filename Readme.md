@@ -5,30 +5,30 @@ This Weather App provides real-time weather information for any city. Users can 
 
 ## System Architecture
 
-      +----------------+
-      |    Frontend    |  React JS
-      +--------+-------+
-               |
-               v
-      +----------------+
-      |   FastAPI API  |  /weather?city=<city>
-      +--------+-------+
-               |
-        Check Redis Cache
-               |
-       +-------+-------+
-       |               |
-   Cache Hit       Cache Miss
-       |               |
-       v               v
- Return cached     Call External
-     data           Weather API
-       |               |
-       +-------+-------+
-               |
-           Store in Redis
-               |
-               v
+        +----------------+
+        |    Frontend    |  React JS
+        +--------+-------+
+                |
+                v
+        +----------------+
+        |   FastAPI API  |  /weather?city=<city>
+        +--------+-------+
+                |
+            Check Redis Cache
+                |
+        +-------+-------+
+        |               |
+        Cache Hit       Cache Miss
+        |               |
+        v               v
+    Return cached     Call External
+        data           Weather API
+        |               |
+        +-------+-------+
+                |
+            Store in Redis
+                |
+                v
             Response
 
 ## Components
@@ -74,19 +74,3 @@ docker compose up --build  or just run bin/start
 Frontend: http://localhost:3000
 Backend: http://localhost:8000
 Redis: localhost:6379 (internal, not usually accessed directly)
-
-
-  +----------------+
-  |     Frontend   |  React JS
-  | (Browser / UI) |
-  +--------+-------+
-           |
-           v
-  +----------------+
-  |   FastAPI API  |  Backend endpoint: /weather?city=<city>
-  +--------+-------+
-           |
-    Check Redis Cache
-           |
-   +-------+--------+
-   |                |
