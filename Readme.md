@@ -4,6 +4,7 @@
 This Weather App provides real-time weather information for any city. Users can enter a city name and instantly get current weather conditions, including temperature, humidity, wind speed, UV index, visibility, and weather icons. The system is fully dockerized and built with a React frontend, FastAPI backend, and Redis caching layer. Redis prevents repeated external API calls by caching responses for a short period (e.g., 30 minutes).
 
 ## System Architecture
+
       +----------------+
       |     Frontend   |  React JS
       | (Browser / UI) |
@@ -28,6 +29,7 @@ Return cached data   Call External Weather API
        +----------------+
                |
              Response
+
 ## Components
 ### Frontend (React)
     - Simple user interface where users can enter a city name.
@@ -71,3 +73,19 @@ docker compose up --build  or just run bin/start
 Frontend: http://localhost:3000
 Backend: http://localhost:8000
 Redis: localhost:6379 (internal, not usually accessed directly)
+
+
+  +----------------+
+  |     Frontend   |  React JS
+  | (Browser / UI) |
+  +--------+-------+
+           |
+           v
+  +----------------+
+  |   FastAPI API  |  Backend endpoint: /weather?city=<city>
+  +--------+-------+
+           |
+    Check Redis Cache
+           |
+   +-------+--------+
+   |                |
